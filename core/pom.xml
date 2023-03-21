@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>net.tirasa</groupId>
+        <artifactId>syncope-scim-test</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <name>Apache Syncope sample project - Core</name>
+    <groupId>net.tirasa</groupId>
+    <artifactId>syncope-core</artifactId>
+    <packaging>war</packaging>
+
+    <dependencies>
+        <dependency>
+            <groupId>net.tirasa</groupId>
+            <artifactId>syncope-common</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.syncope.core</groupId>
+            <artifactId>syncope-core-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.syncope.core.idm</groupId>
+            <artifactId>syncope-core-idm-rest-cxf</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.syncope.core.am</groupId>
+            <artifactId>syncope-core-am-rest-cxf</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.syncope.core</groupId>
+            <artifactId>syncope-core-self-keymaster-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.syncope.common.keymaster</groupId>
+            <artifactId>syncope-common-keymaster-client-zookeeper</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>syncope</finalName>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <inherited>true</inherited>
+                <configuration>
+                    <outputDirectory>${bundles.directory}</outputDirectory>
+                    <useBaseVersion>true</useBaseVersion>
+                    <artifactItems>
+                        <artifactItem>
+                            <groupId>net.tirasa.connid.bundles.soap</groupId>
+                            <artifactId>net.tirasa.connid.bundles.soap</artifactId>
+                            <version>${connid.soap.version}</version>
+                            <classifier>bundle</classifier>
+                        </artifactItem>
+                        <artifactItem>
+                            <groupId>net.tirasa.connid.bundles</groupId>
+                            <artifactId>net.tirasa.connid.bundles.rest</artifactId>
+                            <version>${connid.rest.version}</version>
+                            <classifier>bundle</classifier>
+                        </artifactItem>
+                        <artifactItem>
+                            <groupId>net.tirasa.connid.bundles</groupId>
+                            <artifactId>net.tirasa.connid.bundles.csvdir</artifactId>
+                            <version>${connid.csvdir.version}</version>
+                            <classifier>bundle</classifier>
+                        </artifactItem>
+                        <artifactItem>
+                            <groupId>net.tirasa.connid.bundles.db</groupId>
+                            <artifactId>net.tirasa.connid.bundles.db.table</artifactId>
+                            <version>${connid.database.version}</version>
+                            <classifier>bundle</classifier>
+                        </artifactItem>
+                        <artifactItem>
+                            <groupId>net.tirasa.connid.bundles.db</groupId>
+                            <artifactId>net.tirasa.connid.bundles.db.scriptedsql</artifactId>
+                            <version>${connid.database.version}</version>
+                            <classifier>bundle</classifier>
+                        </artifactItem>
+                        <artifactItem>
+                            <groupId>net.tirasa.connid.bundles</groupId>
+                            <artifactId>net.tirasa.connid.bundles.ldap</artifactId>
+                            <version>${connid.ldap.version}</version>
+                            <classifier>bundle</classifier>
+                        </artifactItem>
+                        <artifactItem>
+                            <groupId>net.tirasa.connid.bundles</groupId>
+                            <artifactId>net.tirasa.connid.bundles.ad</artifactId>
+                            <version>${connid.ad.version}</version>
+                            <classifier>bundle</classifier>
+                        </artifactItem>
+                        <artifactItem>
+                            <groupId>net.tirasa.connid.bundles</groupId>
+                            <artifactId>net.tirasa.connid.bundles.googleapps</artifactId>
+                            <version>${connid.googleapps.version}</version>
+                            <classifier>bundle</classifier>
+                        </artifactItem>
+                        <artifactItem>
+                            <groupId>net.tirasa.connid.bundles</groupId>
+                            <artifactId>net.tirasa.connid.bundles.azure</artifactId>
+                            <version>${connid.azure.version}</version>
+                            <classifier>bundle</classifier>
+                        </artifactItem>
+                        <artifactItem>
+                            <groupId>net.tirasa.connid.bundles</groupId>
+                            <artifactId>net.tirasa.connid.bundles.servicenow</artifactId>
+                            <version>${connid.servicenow.version}</version>
+                            <classifier>bundle</classifier>
+                        </artifactItem>
+                        <artifactItem>
+                            <groupId>net.tirasa.connid.bundles.okta</groupId>
+                            <artifactId>net.tirasa.connid.bundles.okta</artifactId>
+                            <version>${connid.okta.version}</version>
+                            <classifier>bundle</classifier>
+                        </artifactItem>
+                        <artifactItem>
+                            <groupId>net.tirasa.connid.bundles</groupId>
+                            <artifactId>net.tirasa.connid.bundles.cmd</artifactId>
+                            <version>${connid.cmd.version}</version>
+                            <classifier>bundle</classifier>
+                        </artifactItem>
+                        <artifactItem>
+                            <groupId>net.tirasa.connid.bundles</groupId>
+                            <artifactId>net.tirasa.connid.bundles.scim</artifactId>
+                            <version>1.0.0-SNAPSHOT</version>
+                            <classifier>bundle</classifier>
+                        </artifactItem>
+                    </artifactItems>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>set-bundles</id>
+                        <phase>process-test-resources</phase>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+
+        <testResources>
+            <testResource>
+                <directory>src/test/resources</directory>
+                <filtering>true</filtering>
+                <excludes>
+                    <exclude>keystore</exclude>
+                </excludes>
+            </testResource>
+            <testResource>
+                <directory>src/test/resources</directory>
+                <filtering>false</filtering>
+                <includes>
+                    <include>keystore</include>
+                </includes>
+            </testResource>
+        </testResources>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>all</id>
+
+            <dependencies>
+                <dependency>
+                    <groupId>org.apache.syncope.ext.flowable</groupId>
+                    <artifactId>syncope-ext-flowable-rest-cxf</artifactId>
+                    <version>${syncope.version}</version>
+                </dependency>
+
+                <dependency>
+                    <groupId>org.apache.syncope.ext.saml2sp4ui</groupId>
+                    <artifactId>syncope-ext-saml2sp4ui-rest-cxf</artifactId>
+                    <version>${syncope.version}</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.apache.syncope.ext.saml2sp4ui</groupId>
+                    <artifactId>syncope-ext-saml2sp4ui-persistence-jpa</artifactId>
+                    <version>${syncope.version}</version>
+                </dependency>
+
+                <dependency>
+                    <groupId>org.apache.syncope.ext.oidcc4ui</groupId>
+                    <artifactId>syncope-ext-oidcc4ui-rest-cxf</artifactId>
+                    <version>${syncope.version}</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.apache.syncope.ext.oidcc4ui</groupId>
+                    <artifactId>syncope-ext-oidcc4ui-persistence-jpa</artifactId>
+                    <version>${syncope.version}</version>
+                </dependency>
+
+                <dependency>
+                    <groupId>org.apache.syncope.ext.scimv2</groupId>
+                    <artifactId>syncope-ext-scimv2-rest-cxf</artifactId>
+                    <version>${syncope.version}</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.apache.syncope.ext.scimv2</groupId>
+                    <artifactId>syncope-ext-scimv2-scim-rest-cxf</artifactId>
+                    <version>${syncope.version}</version>
+                </dependency>
+            </dependencies>
+
+            <build>
+                <resources>
+                    <resource>
+                        <directory>src/main/resources</directory>
+                        <filtering>true</filtering>
+                    </resource>
+                    <resource>
+                        <directory>src/main/resources/all</directory>
+                        <filtering>true</filtering>
+                    </resource>
+                </resources>
+            </build>
+        </profile>
+
+        <profile>
+            <!--
+            This profile builds an executable war file.
+            In order for the app to run, it is necessary to include the conf directory and the JDBC driver in the runtime
+            classpath; according to official docs [1] this can be achieved by setting the LOADER_PATH env variable as follows:
+
+            export LOADER_PATH=/path/to/conf/dir,/path/to/jdbc-driver.jar
+
+            [1] https://docs.spring.io/spring-boot/docs/current/reference/html/executable-jar.html
+            -->
+            <id>executable</id>
+
+            <dependencies>
+                <dependency>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-undertow</artifactId>
+                </dependency>
+            </dependencies>
+
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-maven-plugin</artifactId>
+                        <configuration>
+                            <mainClass>org.apache.syncope.core.starter.SyncopeCoreApplication</mainClass>
+                            <layout>ZIP</layout>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>repackage</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>docker</id>
+
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-war-plugin</artifactId>
+                        <configuration>
+                            <attachClasses>true</attachClasses>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+</project>
