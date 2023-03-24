@@ -2,6 +2,7 @@ package fit.core;
 
 import fit.AbstractITCase;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 import org.apache.syncope.common.lib.Attr;
 import org.apache.syncope.common.lib.SyncopeClientException;
 import org.apache.syncope.common.lib.SyncopeConstants;
@@ -11,6 +12,8 @@ import org.apache.syncope.common.lib.request.UserUR;
 import org.apache.syncope.common.lib.to.ConnObject;
 import org.apache.syncope.common.lib.to.UserTO;
 import org.apache.syncope.common.lib.types.AnyTypeKind;
+import org.apache.syncope.common.lib.types.ClientExceptionType;
+import org.awaitility.Awaitility;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -130,15 +133,17 @@ public class UserITCase extends AbstractITCase {
         // finally delete user
         deleteUser(userTO.getKey());
 
-        try {
-            Thread.sleep(20000);
-            ConnObject connObject =
-                    resourceService.readConnObject("SCIMv2 Salesforce resource", AnyTypeKind.USER.name(),
-                            userTO.getKey());
-            Assertions.fail("Should not arrive here");
-        } catch (SyncopeClientException sce) {
-            sce.printStackTrace();
-        }
+        String finalKey = userTO.getKey();
+        Awaitility.await().atMost(30, TimeUnit.SECONDS).until(() -> {
+            try {
+                resourceService.readConnObject("SCIMv2 Salesforce resource", AnyTypeKind.USER.name(),
+                        finalKey);
+            } catch (SyncopeClientException sce) {
+                sce.printStackTrace();
+                return ClientExceptionType.NotFound == sce.getType();
+            }
+            return false;
+        });
     }
 
     @Test

@@ -96,14 +96,8 @@ under the License.
                         </artifactItem>
                         <artifactItem>
                             <groupId>net.tirasa.connid.bundles.db</groupId>
-                            <artifactId>net.tirasa.connid.bundles.db.table</artifactId>
-                            <version>${connid.database.version}</version>
-                            <classifier>bundle</classifier>
-                        </artifactItem>
-                        <artifactItem>
-                            <groupId>net.tirasa.connid.bundles.db</groupId>
-                            <artifactId>net.tirasa.connid.bundles.db.scriptedsql</artifactId>
-                            <version>${connid.database.version}</version>
+                            <artifactId>net.tirasa.connid.bundles.db</artifactId>
+                            <version>${connid.db.version}</version>
                             <classifier>bundle</classifier>
                         </artifactItem>
                         <artifactItem>
@@ -132,6 +126,12 @@ under the License.
                         </artifactItem>
                         <artifactItem>
                             <groupId>net.tirasa.connid.bundles</groupId>
+                            <artifactId>net.tirasa.connid.bundles.scim</artifactId>
+                            <version>${connid.scim.version}</version>
+                            <classifier>bundle</classifier>
+                        </artifactItem>
+                        <artifactItem>
+                            <groupId>net.tirasa.connid.bundles</groupId>
                             <artifactId>net.tirasa.connid.bundles.servicenow</artifactId>
                             <version>${connid.servicenow.version}</version>
                             <classifier>bundle</classifier>
@@ -146,12 +146,6 @@ under the License.
                             <groupId>net.tirasa.connid.bundles</groupId>
                             <artifactId>net.tirasa.connid.bundles.cmd</artifactId>
                             <version>${connid.cmd.version}</version>
-                            <classifier>bundle</classifier>
-                        </artifactItem>
-                        <artifactItem>
-                            <groupId>net.tirasa.connid.bundles</groupId>
-                            <artifactId>net.tirasa.connid.bundles.scim</artifactId>
-                            <version>1.0.0-SNAPSHOT</version>
                             <classifier>bundle</classifier>
                         </artifactItem>
                     </artifactItems>
