@@ -7,12 +7,14 @@ import org.apache.syncope.common.lib.Attr;
 import org.apache.syncope.common.lib.SyncopeClientException;
 import org.apache.syncope.common.lib.SyncopeConstants;
 import org.apache.syncope.common.lib.request.AttrPatch;
+import org.apache.syncope.common.lib.request.PasswordPatch;
 import org.apache.syncope.common.lib.request.UserCR;
 import org.apache.syncope.common.lib.request.UserUR;
 import org.apache.syncope.common.lib.to.ConnObject;
 import org.apache.syncope.common.lib.to.UserTO;
 import org.apache.syncope.common.lib.types.AnyTypeKind;
 import org.apache.syncope.common.lib.types.ClientExceptionType;
+import org.apache.syncope.common.rest.api.beans.AnyQuery;
 import org.awaitility.Awaitility;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
@@ -117,6 +119,7 @@ public class UserITCase extends AbstractITCase {
                 .plainAttr(
                         new AttrPatch.Builder(new Attr.Builder("firstname")
                                 .value("testv2sales_upd").build()).build())
+                .password(new PasswordPatch.Builder().value("Password123!").resources(userTO.getResources()).build())
                 .build();
         userTO = updateUser(userUR).getEntity();
         try {
@@ -209,8 +212,8 @@ public class UserITCase extends AbstractITCase {
 
     @AfterEach
     public void cleanUpLocal() {
-//        userService.search(new AnyQuery.Builder().realm(SyncopeConstants.ROOT_REALM).build()).getResult().stream()
-//                .filter(user -> user.getResources().contains("SCIM v11 resource"))
-//                .forEach(user -> userService.delete(user.getKey()));
+        userService.search(new AnyQuery.Builder().realm(SyncopeConstants.ROOT_REALM).build()).getResult().stream()
+                .filter(user -> user.getResources().stream().anyMatch(r -> r.contains("SCIM")))
+                .forEach(user -> userService.delete(user.getKey()));
     }
 }

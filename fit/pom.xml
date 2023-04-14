@@ -326,18 +326,6 @@ under the License.
                                 <context>syncope-console</context>
                             </properties>
                         </deployable>
-                        <deployable>
-                            <location>../enduser/target/syncope-enduser</location>
-                            <properties>
-                                <context>syncope-enduser</context>
-                            </properties>
-                        </deployable>
-                        <deployable>
-                            <location>../wa/target/syncope-wa</location>
-                            <properties>
-                                <context>syncope-wa</context>
-                            </properties>
-                        </deployable>
                     </deployables>
                 </configuration>
             </plugin>
