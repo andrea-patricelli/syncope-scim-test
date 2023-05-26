@@ -22,11 +22,11 @@ under the License.
   <parent>
     <groupId>org.apache.syncope</groupId>
     <artifactId>syncope</artifactId>
-    <version xmlns="">3.0.3-SNAPSHOT</version>
+    <version xmlns="">3.0.3</version>
   </parent>
 
   <properties>
-    <syncope.version xmlns="">3.0.3-SNAPSHOT</syncope.version>
+    <syncope.version xmlns="">3.0.3</syncope.version>
     <secretKey>sdfhsdfhsdhsdjfhdsgkgshkdfmnbcxgdfsd</secretKey>
     <anonymousKey>anonymousKey</anonymousKey>
     <jwsKey>dsgfhsdfhdsfsdjfvdjfdvfhdsvbfsfhsvdjfsdjsdbfjdsfbsdkjfbgsdf</jwsKey>
@@ -37,6 +37,8 @@ under the License.
     <checkstyle.skip>true</checkstyle.skip>
 
     <cargo.servlet.port>9443</cargo.servlet.port>
+    
+    <connid.scim.version>1.0.1-SNAPSHOT</connid.scim.version>
   </properties>
 
   <name>Apache Syncope sample project</name>
